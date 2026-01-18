@@ -7,7 +7,7 @@ interface UseChatReturn {
     isTyping: boolean;
     inputValue: string;
     setInputValue: (value: string) => void;
-    sendMessage: (e?: React.FormEvent) => Promise<void>;
+    sendMessage: (e?: React.FormEvent, messageText?: string) => Promise<void>;
     messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -27,11 +27,13 @@ export function useChat(sessionId: string): UseChatReturn {
         scrollToBottom();
     }, [messages, isTyping]);
 
-    const sendMessage = async (e?: React.FormEvent) => {
+    const sendMessage = async (e?: React.FormEvent, messageText?: string) => {
         e?.preventDefault();
-        if (!inputValue.trim() || isTyping) return;
 
-        const userText = inputValue.trim();
+        const finalMessage = messageText || inputValue.trim();
+        if (!finalMessage || (isTyping && !messageText)) return;
+
+        const userText = finalMessage;
 
         // Add user message
         const userMessage: Message = {

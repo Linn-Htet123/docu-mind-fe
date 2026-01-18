@@ -35,7 +35,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         >
           <ReactMarkdown>{message.text}</ReactMarkdown>
         </div>
-        {message.sources && message.sources.length > 0 && (
+        {/* {message.sources && message.sources.length > 0 && (
           <div className="mt-3 pt-2 border-t border-gray-100">
             <p className="text-[10px] font-semibold text-gray-400 mb-1 uppercase tracking-wider">
               Sources
@@ -52,7 +52,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
